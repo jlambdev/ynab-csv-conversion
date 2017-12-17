@@ -4,7 +4,7 @@ Convert UK bank transactions CSV export files to a format that can be
 integrated with You Need A Budget's web app. Mainly renames headers and converts
 amount values to positive/negative amounts.
 
-## LLoyds
+## LLoyds (Dec 2017)
 
 Reduces the CSV to the following columns and replaces headers:
 * Transaction Date: **Date**
@@ -14,7 +14,7 @@ Reduces the CSV to the following columns and replaces headers:
 
 Run: `python3 convert.py lloyds <input_file.csv>`
 
-## Halifax
+## Halifax (Dec 2017)
 
 Reduces the CSV to the following columns:
 * Date
