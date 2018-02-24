@@ -22,6 +22,9 @@ LLOYDS_HEADERS = ['Date', 'Description', 'Outflow', 'Inflow']
 HALIFAX_OUTPUT_PATH = '.\\halifax_import.csv'
 HALIFAX_HEADERS = ['Date', 'Description', 'Amount']
 
+N26_OUTPUT_PATH = '.\\n26_import.csv'
+N26_HEADERS = ['Date', 'Description', 'Amount']
+
 
 def convert_lloyds_export(file_path):
     """
@@ -80,7 +83,17 @@ def convert_n26_export(file_path):
 
     :param file_path: the CSV input file to convert
     """
-    pass
+    with open(file_path) as csv_file:
+        with open(N26_OUTPUT_PATH, 'w', newline='') as output_file:
+            reader = csv.reader(csv_file, delimiter=',')
+            writer = csv.writer(output_file, delimiter=',')
+            header_row = True
+            for row in reader:
+                if header_row:
+                    writer.writerow(HALIFAX_HEADERS)
+                    header_row = False
+                else:
+                    writer.writerow([row[0], row[1], row[6]])
 
 
 if __name__ == '__main__':
