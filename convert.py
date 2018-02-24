@@ -1,10 +1,12 @@
 """
 Convert UK bank transactions CSV exports to a CSV import format
 that is compatible with the You Need A Budget web app. Currently
-converts for Lloyds current accounts and Halifax credit cards.
+converts for Lloyds/N26 current accounts and Halifax credit cards.
 
-Run: python3 convert.py [lloyds|halifax] <input_file.csv>
+Run: python3 convert.py [lloyds|halifax|n26] <input_file.csv>
 """
+from constants import BANK_NAMES, LLOYDS_OUTPUT_PATH, LLOYDS_HEADERS, \
+    HALIFAX_OUTPUT_PATH, HALIFAX_HEADERS, N26_OUTPUT_PATH, N26_HEADERS
 import argparse
 import csv
 import sys
@@ -13,17 +15,6 @@ import os
 parser = argparse.ArgumentParser()
 parser.add_argument("bank")
 parser.add_argument("target_path")
-
-BANK_NAMES = ["lloyds", "halifax", "n26"]
-
-LLOYDS_OUTPUT_PATH = '.\\lloyds_import.csv'
-LLOYDS_HEADERS = ['Date', 'Description', 'Outflow', 'Inflow']
-
-HALIFAX_OUTPUT_PATH = '.\\halifax_import.csv'
-HALIFAX_HEADERS = ['Date', 'Description', 'Amount']
-
-N26_OUTPUT_PATH = '.\\n26_import.csv'
-N26_HEADERS = ['Date', 'Description', 'Amount']
 
 
 def convert_lloyds_export(file_path):
@@ -90,7 +81,7 @@ def convert_n26_export(file_path):
             header_row = True
             for row in reader:
                 if header_row:
-                    writer.writerow(HALIFAX_HEADERS)
+                    writer.writerow(N26_HEADERS)
                     header_row = False
                 else:
                     writer.writerow([row[0], row[1], row[6]])
@@ -106,7 +97,10 @@ if __name__ == '__main__':
         print("Target file path '{}' is not a file".format(args.target_path))
         sys.exit(2)
 
-    if args.bank == BANK_NAMES[0]:
-        convert_lloyds_export(args.target_path)
-    elif args.bank == BANK_NAMES[1]:
-        convert_halifax_export(args.target_path)
+    converter = {
+        BANK_NAMES[0]: convert_lloyds_export,
+        BANK_NAMES[1]: convert_halifax_export,
+        BANK_NAMES[2]: convert_n26_export
+    }.get(args.bank)
+
+    converter(args.target_path)
