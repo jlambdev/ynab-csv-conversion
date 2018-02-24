@@ -25,3 +25,12 @@ Converts positive amounts to negative and vice versa to represent credit
 and debit amounts (credit card transactions).
 
 Run: `python3 convert.py halifax <input_file.csv>`
+
+## N26 (Feb 2018)
+
+Reduces the CSV to the following columns:
+* Date
+* Description
+* Amount
+
+Run: `python3 convert.py n26 <input_file.csv>`

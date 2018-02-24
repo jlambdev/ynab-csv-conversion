@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("bank")
 parser.add_argument("target_path")
 
-BANKS = ["lloyds", "halifax"]
+BANK_NAMES = ["lloyds", "halifax", "n26"]
 
 LLOYDS_OUTPUT_PATH = '.\\lloyds_import.csv'
 LLOYDS_HEADERS = ['Date', 'Description', 'Outflow', 'Inflow']
@@ -98,7 +98,7 @@ def convert_n26_export(file_path):
 
 if __name__ == '__main__':
     args = parser.parse_args()
-    if args.bank not in BANKS:
+    if args.bank not in BANK_NAMES:
         print("Conversion unavailable for '{}'".format(args.bank))
         sys.exit(1)
 
@@ -106,7 +106,7 @@ if __name__ == '__main__':
         print("Target file path '{}' is not a file".format(args.target_path))
         sys.exit(2)
 
-    if args.bank == BANKS[0]:
+    if args.bank == BANK_NAMES[0]:
         convert_lloyds_export(args.target_path)
-    elif args.bank == BANKS[1]:
+    elif args.bank == BANK_NAMES[1]:
         convert_halifax_export(args.target_path)
