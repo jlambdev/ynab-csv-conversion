@@ -1,7 +1,8 @@
 """
 Test conversion of UK bank CSV exports to files that can be imported into YNAB.
 """
-from convert import convert_lloyds_export, convert_halifax_export
+from convert import convert_lloyds_export, convert_halifax_export, \
+    convert_n26_export
 import unittest
 import csv
 import os
@@ -62,6 +63,27 @@ class HalifaxConversionTest(BaseConversionTest):
 
     def test_conversion(self):
         convert_halifax_export(self.INPUT_PATH)
+        self.assert_conversion(self.OUTPUT_PATH, self.ASSERTION_PATH)
+
+
+class N26ConversionTest(BaseConversionTest):
+    """
+    Test conversion of N26 CSV exports
+
+    Assert header changes:
+     - Payee -> Description
+     - Amount (EUR) -> Amount
+    """
+    OUTPUT_PATH = '.\\n26_import.csv'
+    INPUT_PATH = '.\\data\\n26_download_example.csv'
+    ASSERTION_PATH = '.\\data\\n26_conversion_example.csv'
+
+    def tearDown(self):
+        if os.path.exists(self.OUTPUT_PATH):
+            os.remove(self.OUTPUT_PATH)
+
+    def test_conversion(self):
+        convert_n26_export(self.INPUT_PATH)
         self.assert_conversion(self.OUTPUT_PATH, self.ASSERTION_PATH)
 
 if __name__ == '__main__':

@@ -1,0 +1,6 @@
+﻿Date,Payee,Account number,Transaction type,Payment reference,Category,Amount (EUR),Amount (Foreign Currency),Type Foreign Currency,Exchange Rate
+2018-02-08,Transferwise Ltd,EE000000000000000000,Income,LAMB JONATHAN,Income,300.0,,,
+2018-02-12,N26 Bank,,Outgoing Transfer,UPS Express Delivery,Miscellaneous,-25.0,,,
+2018-02-19,Transferwise Ltd,EE000000000000000000,Income,LAMB JONATHAN,Income,222.22,,,
+2018-02-24,Rental Company GmbH,DE00000000000000000000,Outgoing Transfer,Miete Jonathan Lamb,Household & Utilities,-780.0,,,
+2018-02-24,Jonathan Lamb,DE00000000000000000000,Outgoing Transfer,Activating account,Miscellaneous,-100.0,,,

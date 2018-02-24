@@ -71,6 +71,18 @@ def convert_halifax_export(file_path):
                     writer.writerow([row[0], row[3], amount])
 
 
+def convert_n26_export(file_path):
+    """
+    Convert an N26 debit card transactions CSV export to a CSV
+    that is compatible with the import feature for You Need A Budget.
+
+    Creates a new file with a subset of data and new headers.
+
+    :param file_path: the CSV input file to convert
+    """
+    pass
+
+
 if __name__ == '__main__':
     args = parser.parse_args()
     if args.bank not in BANKS:
