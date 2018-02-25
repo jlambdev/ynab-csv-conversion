@@ -4,6 +4,8 @@ Convert UK bank transactions CSV export files to a format that can be
 integrated with You Need A Budget's web app. Mainly renames headers and converts
 amount values to positive/negative amounts.
 
+Remember to mark `src` directory as root if you are using PyCharm.
+
 ## LLoyds (Dec 2017)
 
 Reduces the CSV to the following columns and replaces headers:
@@ -12,7 +14,7 @@ Reduces the CSV to the following columns and replaces headers:
 * Debit Amount: **Outflow**
 * Credit Amount: **Inflow**
 
-Run: `python3 convert.py lloyds <input_file.csv>`
+Run: `run.bat lloyds <input_file.csv>`
 
 ## Halifax (Dec 2017)
 
@@ -24,7 +26,7 @@ Reduces the CSV to the following columns:
 Converts positive amounts to negative and vice versa to represent credit
 and debit amounts (credit card transactions).
 
-Run: `python3 convert.py halifax <input_file.csv>`
+Run: `run.bat halifax <input_file.csv>`
 
 ## N26 (Feb 2018)
 
@@ -33,4 +35,4 @@ Reduces the CSV to the following columns:
 * Description
 * Amount
 
-Run: `python3 convert.py n26 <input_file.csv>`
+Run: `run.bat n26 <input_file.csv>`

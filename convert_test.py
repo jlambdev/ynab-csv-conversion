@@ -2,7 +2,8 @@
 Test conversion of UK bank CSV exports to files that can be imported into YNAB.
 """
 from convert import convert_lloyds_export, convert_halifax_export, \
-    convert_n26_export, BANK_NAMES
+    convert_n26_export
+from constants import BANK_NAMES
 import unittest
 import csv
 import os
