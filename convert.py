@@ -37,6 +37,7 @@ def convert_lloyds_export(file_path):
                     header_row = False
                 else:
                     writer.writerow([row[0], row[4], row[5], row[6]])
+    print("File created as '{}'.".format(LLOYDS_OUTPUT_PATH[2:]))
 
 
 def convert_halifax_export(file_path):
@@ -63,6 +64,8 @@ def convert_halifax_export(file_path):
                     amount = row[4]
                     amount = amount[1:] if '-' in amount else '-{}'.format(amount)
                     writer.writerow([row[0], row[3], amount])
+    print("File created as '{}'.".format(HALIFAX_OUTPUT_PATH[2:]))
+    print("Remember to add transactions from other statement views if required.")
 
 
 def convert_n26_export(file_path):
@@ -85,6 +88,7 @@ def convert_n26_export(file_path):
                     header_row = False
                 else:
                     writer.writerow([row[0], row[1], row[6]])
+    print("File created as '{}'.".format(N26_OUTPUT_PATH[2:]))
 
 
 if __name__ == '__main__':
