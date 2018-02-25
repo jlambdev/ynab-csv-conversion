@@ -4,8 +4,6 @@ Convert UK bank transactions CSV export files to a format that can be
 integrated with You Need A Budget's web app. Mainly renames headers and converts
 amount values to positive/negative amounts.
 
-Remember to mark `src` directory as root if you are using PyCharm.
-
 ## LLoyds (Dec 2017)
 
 Reduces the CSV to the following columns and replaces headers:
