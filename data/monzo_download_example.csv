@@ -1,0 +1,6 @@
+id,created,amount,currency,local_amount,local_currency,category,emoji,description,address,notes,receipt
+tx_00009UMsnTvyNA9koLaaaa,2018-03-08 19:33:11 +0000,-9.07,GBP,-10.13,EUR,groceries,🍏,Edeka Kelz,"38 Straße Der Pariser Kommune, Berlin, Berlin, 10200, Germany",,
+tx_00009UMo8NAkCxv7Q9aaaa,2018-03-08 18:40:56 +0000,-200.58,GBP,-223.96,EUR,shopping,🔌,SATURN,"Vo?stra?e 24, Berlin, 10117, Germany",,
+tx_00009UGczF54er260Laaaa,2018-03-05 19:07:46 +0000,-10.53,GBP,-11.77,EUR,groceries,🍏,Edeka Kelz,"38 Straße Der Pariser Kommune, Berlin, Berlin, 10200, Germany",,
+tx_00009T3JKPdI3EMO8yaaaa,2018-01-28 11:04:09 +0000,300,GBP,300,GBP,general,,Payment from J Lamb,,MONZO,
+tx_00009SnVT77KLpCQyXaaaa,2018-01-20 20:04:48 +0000,-9.10,GBP,-9.10,GBP,entertainment,🍸,Headrow House,"19 The Headrow, Leeds LS1 6PU",,

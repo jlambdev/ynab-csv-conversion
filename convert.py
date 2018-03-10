@@ -6,7 +6,8 @@ converts for Lloyds/N26 current accounts and Halifax credit cards.
 Run: python3 convert.py [lloyds|halifax|n26] <input_file.csv>
 """
 from constants import BANK_NAMES, LLOYDS_OUTPUT_PATH, LLOYDS_HEADERS, \
-    HALIFAX_OUTPUT_PATH, HALIFAX_HEADERS, N26_OUTPUT_PATH, N26_HEADERS
+    HALIFAX_OUTPUT_PATH, HALIFAX_HEADERS, N26_OUTPUT_PATH, N26_HEADERS, \
+    MONZO_OUTPUT_PATH, MONZO_HEADERS
 import argparse
 import csv
 import sys
@@ -91,6 +92,29 @@ def convert_n26_export(file_path):
     print("File created as '{}'.".format(N26_OUTPUT_PATH[2:]))
 
 
+def convert_monzo_export(file_path):
+    """
+    Convert a Monzo debit card transactions CSV export to a CSV
+    that is compatible with the import feature for You Need A Budget.
+
+    Creates a new file with a subset of data and new headers.
+
+    :param file_path: the CSV input file to convert
+    """
+    with open(file_path, encoding='latin1') as csv_file:
+        with open(MONZO_OUTPUT_PATH, 'w', newline='') as output_file:
+            reader = csv.reader(csv_file, delimiter=',')
+            writer = csv.writer(output_file, delimiter=',')
+            header_row = True
+            for row in reader:
+                if header_row:
+                    writer.writerow(MONZO_HEADERS)
+                    header_row = False
+                else:
+                    writer.writerow([row[1][:10], row[8], row[2]])
+    print("File created as '{}'.".format(MONZO_OUTPUT_PATH[2:]))
+
+
 if __name__ == '__main__':
     args = parser.parse_args()
     if args.bank not in BANK_NAMES:
@@ -104,7 +128,8 @@ if __name__ == '__main__':
     converter = {
         BANK_NAMES[0]: convert_lloyds_export,
         BANK_NAMES[1]: convert_halifax_export,
-        BANK_NAMES[2]: convert_n26_export
+        BANK_NAMES[2]: convert_n26_export,
+        BANK_NAMES[3]: convert_monzo_export
     }.get(args.bank)
 
     converter(args.target_path)

@@ -2,7 +2,7 @@
 Test conversion of UK bank CSV exports to files that can be imported into YNAB.
 """
 from convert import convert_lloyds_export, convert_halifax_export, \
-    convert_n26_export
+    convert_n26_export, convert_monzo_export
 from constants import BANK_NAMES
 import unittest
 import csv
@@ -88,11 +88,28 @@ class N26ConversionTest(BaseConversionTest):
         self.assert_conversion(self.OUTPUT_PATH, self.ASSERTION_PATH)
 
 
+class MonzoConversionTest(BaseConversionTest):
+    """
+    Test conversion of Monzo CSV exports
+    """
+    OUTPUT_PATH = '.\\monzo_import.csv'
+    INPUT_PATH = '.\\data\\monzo_download_example.csv'
+    ASSERTION_PATH = '.\\data\\monzo_conversion_example.csv'
+
+    def tearDown(self):
+        if os.path.exists(self.OUTPUT_PATH):
+            os.remove(self.OUTPUT_PATH)
+
+    def test_conversion(self):
+        convert_monzo_export(self.INPUT_PATH)
+        self.assert_conversion(self.OUTPUT_PATH, self.ASSERTION_PATH)
+
+
 class BankNamesTest(unittest.TestCase):
     """
     Simple contractual test for banks to map to methods.
     """
-    EXPECTED_BANK_NAMES = ['lloyds', 'halifax', 'n26']
+    EXPECTED_BANK_NAMES = ['lloyds', 'halifax', 'n26', 'monzo']
 
     def test_bank_names(self):
         self.assertEqual(BANK_NAMES, self.EXPECTED_BANK_NAMES)

@@ -33,4 +33,11 @@ Reduces the CSV to the following columns:
 * Description
 * Amount
 
-Run: `run.bat n26 <input_file.csv>`
+## Monzo (Mar 2018)
+
+Strips the date/time to date only and reduces the CSV to the following columns:
+* Date
+* Description
+* Amount
+
+Run: `run.bat monzo <input_file.csv>`
