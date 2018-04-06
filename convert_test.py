@@ -34,9 +34,9 @@ class LloydsConversionTest(BaseConversionTest):
      - Debit Amount -> Outflow
      - Credit Amount -> Inflow
     """
-    OUTPUT_PATH = '.\\lloyds_import.csv'
-    INPUT_PATH = '.\\data\\lloyds_download_example.csv'
-    ASSERTION_PATH = '.\\data\\lloyds_conversion_example.csv'
+    OUTPUT_PATH = os.path.join('.', 'lloyds_import.csv')
+    INPUT_PATH = os.path.join('.', 'data', 'lloyds_download_example.csv')
+    ASSERTION_PATH = os.path.join('.', 'data', 'lloyds_conversion_example.csv')
 
     def tearDown(self):
         if os.path.exists(self.OUTPUT_PATH):
@@ -54,9 +54,9 @@ class HalifaxConversionTest(BaseConversionTest):
     Amount value modification:
     - Convert positive values to negative and vice versa
     """
-    OUTPUT_PATH = '.\\halifax_import.csv'
-    INPUT_PATH = '.\\data\\halifax_download_example.csv'
-    ASSERTION_PATH = '.\\data\\halifax_conversion_example.csv'
+    OUTPUT_PATH = os.path.join('.', 'halifax_import.csv')
+    INPUT_PATH = os.path.join('.', 'data', 'halifax_download_example.csv')
+    ASSERTION_PATH = os.path.join('.', 'data', 'halifax_conversion_example.csv')
 
     def tearDown(self):
         if os.path.exists(self.OUTPUT_PATH):
@@ -75,9 +75,9 @@ class N26ConversionTest(BaseConversionTest):
      - Payee -> Description
      - Amount (EUR) -> Amount
     """
-    OUTPUT_PATH = '.\\n26_import.csv'
-    INPUT_PATH = '.\\data\\n26_download_example.csv'
-    ASSERTION_PATH = '.\\data\\n26_conversion_example.csv'
+    OUTPUT_PATH = os.path.join('.', 'n26_import.csv')
+    INPUT_PATH = os.path.join('.', 'data', 'n26_download_example.csv')
+    ASSERTION_PATH = os.path.join('.', 'data', 'n26_conversion_example.csv')
 
     def tearDown(self):
         if os.path.exists(self.OUTPUT_PATH):
@@ -92,9 +92,9 @@ class MonzoConversionTest(BaseConversionTest):
     """
     Test conversion of Monzo CSV exports
     """
-    OUTPUT_PATH = '.\\monzo_import.csv'
-    INPUT_PATH = '.\\data\\monzo_download_example.csv'
-    ASSERTION_PATH = '.\\data\\monzo_conversion_example.csv'
+    OUTPUT_PATH = os.path.join('.', 'monzo_import.csv')
+    INPUT_PATH = os.path.join('.', 'data', 'monzo_download_example.csv')
+    ASSERTION_PATH = os.path.join('.', 'data', 'monzo_conversion_example.csv')
 
     def tearDown(self):
         if os.path.exists(self.OUTPUT_PATH):

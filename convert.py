@@ -5,9 +5,9 @@ converts for Lloyds/N26 current accounts and Halifax credit cards.
 
 Run: python3 convert.py [lloyds|halifax|n26] <input_file.csv>
 """
-from constants import BANK_NAMES, LLOYDS_OUTPUT_PATH, LLOYDS_HEADERS, \
-    HALIFAX_OUTPUT_PATH, HALIFAX_HEADERS, N26_OUTPUT_PATH, N26_HEADERS, \
-    MONZO_OUTPUT_PATH, MONZO_HEADERS
+from constants import BANK_NAMES, LLOYDS_OUTPUT, LLOYDS_HEADERS, \
+    HALIFAX_OUTPUT, HALIFAX_HEADERS, N26_OUTPUT, N26_HEADERS, \
+    MONZO_OUTPUT, MONZO_HEADERS
 import argparse
 import csv
 import sys
@@ -27,8 +27,9 @@ def convert_lloyds_export(file_path):
 
     :param file_path: the CSV input file to convert
     """
+    output_path = os.path.join('.', LLOYDS_OUTPUT)
     with open(file_path) as csv_file:
-        with open(LLOYDS_OUTPUT_PATH, 'w', newline='') as output_file:
+        with open(output_path, 'w', newline='') as output_file:
             reader = csv.reader(csv_file, delimiter=',')
             writer = csv.writer(output_file, delimiter=',')
             header_row = True
@@ -38,7 +39,7 @@ def convert_lloyds_export(file_path):
                     header_row = False
                 else:
                     writer.writerow([row[0], row[4], row[5], row[6]])
-    print("File created as '{}'.".format(LLOYDS_OUTPUT_PATH[2:]))
+    print("File created as '{}'.".format(output_path[2:]))
 
 
 def convert_halifax_export(file_path):
@@ -52,8 +53,9 @@ def convert_halifax_export(file_path):
 
     :param file_path: the CSV input file to convert
     """
+    output_path = os.path.join('.', HALIFAX_OUTPUT)
     with open(file_path) as csv_file:
-        with open(HALIFAX_OUTPUT_PATH, 'w', newline='') as output_file:
+        with open(output_path, 'w', newline='') as output_file:
             reader = csv.reader(csv_file, delimiter=',')
             writer = csv.writer(output_file, delimiter=',')
             header_row = True
@@ -65,8 +67,7 @@ def convert_halifax_export(file_path):
                     amount = row[4]
                     amount = amount[1:] if '-' in amount else '-{}'.format(amount)
                     writer.writerow([row[0], row[3], amount])
-    print("File created as '{}'.".format(HALIFAX_OUTPUT_PATH[2:]))
-    print("Remember to add transactions from other statement views if required.")
+    print("File created as '{}'.".format(output_path[2:]))
 
 
 def convert_n26_export(file_path):
@@ -78,8 +79,9 @@ def convert_n26_export(file_path):
 
     :param file_path: the CSV input file to convert
     """
+    output_path = os.path.join('.', N26_OUTPUT)
     with open(file_path) as csv_file:
-        with open(N26_OUTPUT_PATH, 'w', newline='') as output_file:
+        with open(output_path, 'w', newline='') as output_file:
             reader = csv.reader(csv_file, delimiter=',')
             writer = csv.writer(output_file, delimiter=',')
             header_row = True
@@ -89,7 +91,7 @@ def convert_n26_export(file_path):
                     header_row = False
                 else:
                     writer.writerow([row[0], row[1], row[6]])
-    print("File created as '{}'.".format(N26_OUTPUT_PATH[2:]))
+    print("File created as '{}'.".format(output_path[2:]))
 
 
 def convert_monzo_export(file_path):
@@ -101,8 +103,9 @@ def convert_monzo_export(file_path):
 
     :param file_path: the CSV input file to convert
     """
+    output_path = os.path.join('.', MONZO_OUTPUT)
     with open(file_path, encoding='latin1') as csv_file:
-        with open(MONZO_OUTPUT_PATH, 'w', newline='') as output_file:
+        with open(output_path, 'w', newline='') as output_file:
             reader = csv.reader(csv_file, delimiter=',')
             writer = csv.writer(output_file, delimiter=',')
             header_row = True
@@ -112,7 +115,7 @@ def convert_monzo_export(file_path):
                     header_row = False
                 else:
                     writer.writerow([row[1][:10], row[8], row[2]])
-    print("File created as '{}'.".format(MONZO_OUTPUT_PATH[2:]))
+    print("File created as '{}'.".format(output_path[2:]))
 
 
 if __name__ == '__main__':
